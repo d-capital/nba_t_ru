@@ -13,7 +13,7 @@ def convert_time(utc_datetime_str: str) -> str:
     # Print the UTC time
     #print("UTC time:", utc_time)
     # Convert UTC to your local time (for example, Eastern Time)
-    local_timezone = pytz.timezone('Europe/Paris')  # Change to your local timezone
+    local_timezone = pytz.timezone('Europe/Moscow')  # Change to your local timezone
     local_time = utc_time.astimezone(local_timezone)
     # Print the local time
     print("Local time:", local_time)
