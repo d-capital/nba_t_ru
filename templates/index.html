@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NBA Today Games Schedule</title>
+</head>
+<body>
+    <h1>NBA Today Games Schedule</h1>
+
+    <!-- Form with a dropdown selector -->
+    <form method="POST">
+        <label for="dropdown">Select an option:</label>
+        <select name="dropdown" id="dropdown">
+            {% for option in options %}
+                <option value="{{ option }}" {% if option == selected_option %}selected{% endif %}>
+                    {{ option }}
+                </option>
+            {% endfor %}
+        </select>
+        <button type="submit">Submit</button>
+    </form>
+
+    {% if selected_option %}
+        <h2>You selected: {{ selected_option }}</h2>
+    {% endif %}
+    {% for o in out %}
+        <div>{{ o }}</div>
+    {% endfor %}
+</body>
+</html>
