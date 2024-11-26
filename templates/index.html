@@ -7,29 +7,10 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <script src="{{url_for('static', filename='timezone.js')}}"></script>
     <title>NBA Today Games Schedule</title>
 </head>
 <body>
     <h1>NBA Today Games Schedule</h1>
-
-    <!-- Form with a dropdown selector -->
-    <form method="POST">
-        <label for="dropdown">Select an option:</label>
-        <select name="dropdown" id="dropdown">
-            {% for option in options %}
-                <option value="{{ option }}" {% if option == selected_option %}selected{% endif %}>
-                    {{ option }}
-                </option>
-            {% endfor %}
-        </select>
-        <button type="submit">Submit</button>
-    </form>
-
-    {% if selected_option %}
-        <h2>You selected: {{ selected_option }}</h2>
-    {% endif %}
-    {% for o in out %}
-        <div class="style-div roboto-medium">{{ o }}</div>
-    {% endfor %}
 </body>
 </html>
