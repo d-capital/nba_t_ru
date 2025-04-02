@@ -18,11 +18,16 @@ const sendTimeZoneToBackend = async () => {
         if (response.ok) {
             const data = await response.json();
             console.log("Server Response:", data);
-            data.games.forEach(element => {
-                const newDiv = document.createElement('div');
-                newDiv.classList.add('style-div','roboto-medium');
-                newDiv.textContent = element;
-                document.body.appendChild(newDiv);
+            const tableBody = document.querySelector("#nba-schedule tbody");
+            tableBody.innerHTML = "";
+            data.games.forEach(game => {
+                const row = document.createElement("tr");
+                    row.innerHTML = `
+                        <td>${game.home_team} vs ${game.away_team}</td>
+                        <td>${new Date(game.time).toLocaleTimeString()}</td>
+                        <td>${game.venue}</td>
+                    `;
+                tableBody.appendChild(row);
             });
         } else {
             console.error("Failed to send timezone:", response.statusText);

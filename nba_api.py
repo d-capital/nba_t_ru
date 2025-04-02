@@ -30,5 +30,12 @@ def get_todays_games(time_zone:str) -> str:
         vs:str = ' vs '
         away_team = str(games_today[0]['games'][i]['awayTeam']['teamCity']) + ' ' + str(games_today[0]['games'][i]['awayTeam']['teamName'])
         time = convert_time(games_today[0]['games'][i]['gameDateTimeUTC'], time_zone)
-        output.append(home_team + vs + away_team + ' ' + time + ' ')
+        venue = games_today[0]['games'][i]['arenaName']
+        game = {
+            'home_team':home_team,
+            'away_team':away_team,
+            'time':time,
+            'venue':venue
+        }
+        output.append(game)
     return output
