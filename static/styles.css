@@ -42,8 +42,10 @@ tr:hover {
 .logocell {
   display: flex;
   align-items: center;
+  gap: 10px;
   justify-content: center;
-  gap: 10px; /* Adjust spacing between the image and text */
+  flex-wrap: wrap; /* Ensures wrapping on smaller screens */
+  text-align: center;
 }
 
 td img {
