@@ -38,8 +38,8 @@ def get_todays_games(time_zone:str) -> str:
         away_team = str(games_today[0]['games'][i]['awayTeam']['teamCity']) + ' ' + str(games_today[0]['games'][i]['awayTeam']['teamName'])
         time = convert_time(games_today[0]['games'][i]['gameDateTimeUTC'], time_zone)
         venue = games_today[0]['games'][i]['arenaName']
-        home_team_logo = get_logo(games_today[0]['games'][i]['homeTeam']['teamTricode'])
-        away_team_logo = get_logo(games_today[0]['games'][i]['awayTeam']['teamTricode'])
+        home_team_logo = games_today[0]['games'][i]['homeTeam']['teamTricode']
+        away_team_logo = games_today[0]['games'][i]['awayTeam']['teamTricode']
         game = {
             'home_team':home_team,
             'home_team_logo': home_team_logo,
