@@ -23,7 +23,7 @@ const sendTimeZoneToBackend = async () => {
             data.games.forEach(game => {
                 const row = document.createElement("tr");
                     row.innerHTML = `
-                        <td>${game.home_team} vs ${game.away_team}</td>
+                        <td class="logocell">${game.home_team} <img style="width: 50px;height: 50px;" src = ${game.home_team_logo}> vs ${game.away_team} <img style="width: 50px;height: 50px;" src = ${game.away_team_logo}></td>
                         <td>${new Date(game.time).toLocaleTimeString()}</td>
                         <td>${game.venue}</td>
                     `;

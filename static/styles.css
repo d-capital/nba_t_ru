@@ -38,3 +38,16 @@ th {
 tr:hover {
   background-color: #333;
 }
+
+.logocell {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px; /* Adjust spacing between the image and text */
+}
+
+td img {
+  width: 30px; /* Adjust logo size */
+  height: 30px;
+  object-fit: contain;
+}
