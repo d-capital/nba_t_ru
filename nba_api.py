@@ -53,8 +53,8 @@ def get_todays_games(time_zone:str) -> str:
         video_link = get_video_link(matchup)
         if video_link is not None:
             splitted_video_link = video_link.split('/')
-            oid = splitted_video_link[4]
-            id = splitted_video_link[5].split('_')[1]
+            oid = splitted_video_link[5]
+            id = splitted_video_link[6].split('_')[1]
         else:
             oid=None
             id=None

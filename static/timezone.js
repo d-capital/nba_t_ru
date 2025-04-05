@@ -32,7 +32,7 @@ const sendTimeZoneToBackend = async () => {
                 let now = new Date();
                 if(game.video_link && now > date){
                     iframe = `
-                        <div style="left: 0; width: 100%; height: 0; position: relative; padding-bottom: 56.25%;">
+                        <div class="center" style="left: 0; width: 100%; max-width: 640px; height: 0; position: relative; padding-bottom: 56.25%;  margin: 0 auto;"">
                             <iframe 
                                 src="https://vkvideo.ru/video_ext.php?oid=${game.oid}&id=${game.id}" 
                                 style="top: 0; left: 0; width: 100%; height: 100%; position: absolute; border: 0;" 
