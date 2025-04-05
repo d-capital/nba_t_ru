@@ -28,7 +28,8 @@ const sendTimeZoneToBackend = async () => {
                         ${game.video_link ? `<td><a href="${game.video_link}" target="_blank">Watch</a></td>`: `<td>No broadcast</td>`}
                     `;
                 tableBody.appendChild(row);
-                if(game.video_link){
+                let date = new Date(game.time);
+                if(game.video_link && Date.now > date){
                     iframe = `
                         <div style="left: 0; width: 100%; height: 0; position: relative; padding-bottom: 56.25%;">
                             <iframe 
