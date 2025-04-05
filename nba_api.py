@@ -23,6 +23,15 @@ def get_logo(tricode:str):
         logo_url = data[tricode]
         return logo_url
 
+def get_video_link(matchup:str)->str:
+    with open("video_links.json", "r", encoding="utf-8") as f:
+        loaded_links = json.load(f)
+        video_links = [x for x in loaded_links if x['matchup'] == matchup]
+        if len(video_links) > 0:
+            return video_links[0]['link']
+        else:
+            return None
+
 def get_todays_games(time_zone:str) -> str:
     s = requests.get('https://cdn.nba.com/static/json/staticData/scheduleLeagueV2.json')
     json_data = s.json()
@@ -40,13 +49,25 @@ def get_todays_games(time_zone:str) -> str:
         venue = games_today[0]['games'][i]['arenaName']
         home_team_logo = games_today[0]['games'][i]['homeTeam']['teamTricode']
         away_team_logo = games_today[0]['games'][i]['awayTeam']['teamTricode']
+        matchup = home_team_logo+'-'+away_team_logo
+        video_link = get_video_link(matchup)
+        if video_link is not None:
+            splitted_video_link = video_link.split('/')
+            oid = splitted_video_link[4]
+            id = splitted_video_link[5].split('_')[1]
+        else:
+            oid=None
+            id=None
         game = {
             'home_team':home_team,
             'home_team_logo': home_team_logo,
             'away_team':away_team,
             'away_team_logo': away_team_logo,
             'time':time,
-            'venue':venue
+            'venue':venue,
+            'video_link':video_link,
+            'oid':oid,
+            'id':id
         }
         output.append(game)
     return output
