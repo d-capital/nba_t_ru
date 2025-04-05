@@ -101,7 +101,7 @@ def run():
     scheduler = BackgroundScheduler()
     cet = timezone("Europe/Paris")  # Central European Time
     trigger = CronTrigger(hour=15, minute=0, timezone=cet)
-    scheduler.add_job(print_hello, trigger)
+    scheduler.add_job(scrape_and_save_links, trigger)
 
     print("Scheduler started. Waiting for next run...")
     scheduler.start()
