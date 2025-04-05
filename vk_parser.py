@@ -1,7 +1,7 @@
 from playwright.sync_api import sync_playwright
 import json
 from datetime import datetime, timedelta
-from apscheduler.schedulers.blocking import BlockingScheduler
+from apscheduler.schedulers.background import BackgroundScheduler
 from apscheduler.triggers.cron import CronTrigger
 from pytz import timezone
 
@@ -94,10 +94,14 @@ def scrape_and_save_links():
     links = get_broadcasts_today()
     save_broadcast_links(links)    
 
-scheduler = BlockingScheduler()
-cet = timezone("Europe/Paris")  # Central European Time
-trigger = CronTrigger(hour=15, minute=0, timezone=cet)
-scheduler.add_job(scrape_and_save_links, trigger)
+def print_hello():
+    print('hello')
 
-print("Scheduler started. Waiting for next run...")
-scheduler.start()
+def run():
+    scheduler = BackgroundScheduler()
+    cet = timezone("Europe/Paris")  # Central European Time
+    trigger = CronTrigger(hour=15, minute=0, timezone=cet)
+    scheduler.add_job(print_hello, trigger)
+
+    print("Scheduler started. Waiting for next run...")
+    scheduler.start()

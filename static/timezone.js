@@ -25,7 +25,7 @@ const sendTimeZoneToBackend = async () => {
                     row.innerHTML = `
                         <td class="logocell">${game.home_team} <img style="width: 50px;height: 50px;" src = "/static/logos/${game.home_team_logo}.svg"> vs ${game.away_team} <img style="width: 50px;height: 50px;" src = "/static/logos/${game.away_team_logo}.svg"></td>
                         <td>${new Date(game.time).toLocaleTimeString()}</td>
-                        ${game.video_link ? `<td><a href="${game.video_link}" target="_blank">Watch</a></td>`: ""}
+                        ${game.video_link ? `<td><a href="${game.video_link}" target="_blank">Watch</a></td>`: `<td>No broadcast</td>`}
                     `;
                 tableBody.appendChild(row);
                 if(game.video_link){
