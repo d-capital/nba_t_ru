@@ -69,19 +69,20 @@ def map_broadcast_links(video_links: list[str]):
         date = datetime.strptime(str_date, "%d.%m.%y")
         if date >= today and date <= tomorrow:
             match_name_splitted = match_name.split(" — ")
-            home_team_ru = match_name_splitted[0]
-            away_team_ru = match_name_splitted[1]
-            home_team = dictionary[home_team_ru]
-            away_team = dictionary[away_team_ru]
-            link = i['link']
-            video = {
-                'matchup':home_team+'-'+away_team,
-                'home_team':home_team,
-                'away_team':away_team,
-                'date':str_date,
-                'link':link
-            }
-            formatted_video_links.append(video)
+            home_team_ru = match_name_splitted[0].strip()
+            away_team_ru = match_name_splitted[1].strip()
+            if home_team_ru in dictionary and away_team_ru in dictionary:
+                home_team = dictionary[home_team_ru]
+                away_team = dictionary[away_team_ru]
+                link = i['link']
+                video = {
+                    'matchup':home_team+'-'+away_team,
+                    'home_team':home_team,
+                    'away_team':away_team,
+                    'date':str_date,
+                    'link':link
+                }
+                formatted_video_links.append(video)
     return formatted_video_links
 
 
@@ -105,3 +106,5 @@ def run():
 
     print("Scheduler started. Waiting for next run...")
     scheduler.start()
+
+scrape_and_save_links()
