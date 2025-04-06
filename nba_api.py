@@ -70,4 +70,5 @@ def get_todays_games(time_zone:str) -> str:
             'id':id
         }
         output.append(game)
+        output = sorted(output, key=lambda d: d['time'])
     return output
