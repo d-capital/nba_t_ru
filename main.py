@@ -1,5 +1,6 @@
 from flask import Flask, request, render_template, jsonify, redirect, url_for
 import nba_api as nba
+import vk_parser
 
 # Create a Flask instance
 app = Flask(__name__)
@@ -23,4 +24,5 @@ def get_schedule():
 
 # Run the application
 if __name__ == '__main__':
-    app.run(debug=True)
+    vk_parser.run()
+    app.run(host="0.0.0.0", port=5000,debug=True)

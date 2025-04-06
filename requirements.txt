@@ -55,7 +55,7 @@ playwright==1.51.0
 propcache==0.2.1
 property-cached==1.6.4
 pscript==0.7.7
-psycopg2==2.9.3
+psycopg2-binary
 pydantic==2.10.4
 pydantic_core==2.27.2
 pyee==12.1.1

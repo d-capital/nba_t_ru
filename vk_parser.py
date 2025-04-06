@@ -106,5 +106,3 @@ def run():
 
     print("Scheduler started. Waiting for next run...")
     scheduler.start()
-
-scrape_and_save_links()
