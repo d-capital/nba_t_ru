@@ -65,7 +65,7 @@ def map_broadcast_links(video_links: list[str]):
     for i in video_links:
         splitted_name = i['name'].split(" | ")
         match_name = splitted_name[0]
-        str_date = splitted_name[2]
+        str_date = splitted_name[2].strip()
         date = datetime.strptime(str_date, "%d.%m.%y")
         if date >= today and date <= tomorrow:
             match_name_splitted = match_name.split(" — ")
@@ -106,3 +106,5 @@ def run():
 
     print("Scheduler started. Waiting for next run...")
     scheduler.start()
+
+scrape_and_save_links()
