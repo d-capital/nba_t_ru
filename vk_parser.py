@@ -95,9 +95,6 @@ def scrape_and_save_links():
     links = get_broadcasts_today()
     save_broadcast_links(links)    
 
-def print_hello():
-    print('hello')
-
 def run():
     scheduler = BackgroundScheduler()
     cet = timezone("Europe/Paris")  # Central European Time
@@ -106,5 +103,3 @@ def run():
 
     print("Scheduler started. Waiting for next run...")
     scheduler.start()
-
-scrape_and_save_links()
