@@ -44,23 +44,26 @@ def get_broadcasts_today():
     with sync_playwright() as p:
         browser = p.chromium.launch(headless=True)
         page = browser.new_page()
-        page.goto(url,wait_until="networkidle",timeout=0)
+        page.goto(url, wait_until="networkidle", timeout=60000)
 
         video_links = []
         # Extract all video links
-        for el in page.query_selector_all("a"):
+        page.wait_for_selector("a", timeout=10000)
+        elements = page.query_selector_all("a")
+        for el in elements:
             link = el.get_attribute('href')
             name = el.get_attribute('title')
-            if link is not None and link.__contains__("/playlist/") and name is not None:
+            if link is not None and "/playlist/" in link and name is not None:
                 link = f"https://vkvideo.ru/{link}"
-                video = {'link':link, 'name':name}
+                video = {'link': link, 'name': name}
                 video_links.append(video)
+
         browser.close()
         return video_links
 
 def map_broadcast_links(video_links: list[str]):
     formatted_video_links = []
-    today = datetime.now() - timedelta(days=1)
+    today = datetime.now()
     tomorrow = datetime.now() + timedelta(days=1)
     for i in video_links:
         splitted_name = i['name'].split(" | ")
