@@ -116,5 +116,3 @@ def clear_team_name(team_name:str) -> str:
     else:
         name = team_name.strip()
         return name
-
-scrape_and_save_links()
