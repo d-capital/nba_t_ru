@@ -49,15 +49,7 @@ def get_todays_games(time_zone:str) -> str:
         venue = games_today[0]['games'][i]['arenaName']
         home_team_logo = games_today[0]['games'][i]['homeTeam']['teamTricode']
         away_team_logo = games_today[0]['games'][i]['awayTeam']['teamTricode']
-        matchup = home_team_logo+'-'+away_team_logo
-        video_link = get_video_link(matchup)
-        if video_link is not None:
-            splitted_video_link = video_link.split('/')
-            oid = splitted_video_link[5]
-            id = splitted_video_link[6].split('_')[1]
-        else:
-            oid=None
-            id=None
+        video_link = 'https://vkvideo.ru/playlist/-202211208_8'
         game = {
             'home_team':home_team,
             'home_team_logo': home_team_logo,
@@ -66,8 +58,6 @@ def get_todays_games(time_zone:str) -> str:
             'time':time,
             'venue':venue,
             'video_link':video_link,
-            'oid':oid,
-            'id':id
         }
         output.append(game)
         output = sorted(output, key=lambda d: d['time'])

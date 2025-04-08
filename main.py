@@ -24,5 +24,4 @@ def get_schedule():
 
 # Run the application
 if __name__ == '__main__':
-    vk_parser.run()
     app.run(host="0.0.0.0", port=10000,debug=True)

@@ -22,29 +22,15 @@ const sendTimeZoneToBackend = async () => {
             tableBody.innerHTML = "";
             data.games.forEach(game => {
                 const row = document.createElement("tr");
+                    let date = new Date(game.time);
+                    let now = new Date();
                     row.innerHTML = `
                         <td class="logocell">${game.home_team} <img style="width: 50px;height: 50px;" src = "/static/logos/${game.home_team_logo}.svg"> vs ${game.away_team} <img style="width: 50px;height: 50px;" src = "/static/logos/${game.away_team_logo}.svg"></td>
                         <td>${new Date(game.time).toLocaleTimeString()}</td>
-                        ${game.video_link ? `<td><a href="${game.video_link}" target="_blank">Watch</a></td>`: `<td>No broadcast</td>`}
+                        ${game.video_link && now > date ? `<td><a style="color:red" href="${game.video_link}" target="_blank">Watch live</a></td>`: `<td>No started</td>`}
                     `;
                 tableBody.appendChild(row);
-                let date = new Date(game.time);
-                let now = new Date();
-                if(game.video_link && now > date){
-                    iframe = `
-                        <div class="center" style="left: 0; width: 100%; max-width: 640px; height: 0; position: relative; padding-bottom: 56.25%;  margin: 0 auto;"">
-                            <iframe 
-                                src="https://vkvideo.ru/video_ext.php?oid=${game.oid}&id=${game.id}" 
-                                style="top: 0; left: 0; width: 100%; height: 100%; position: absolute; border: 0;" 
-                                allowfullscreen scrolling="no" 
-                                allow="encrypted-media;">
-                            </iframe>
-                        </div>
-                    `
-                    const row2 = document.createElement("tr");
-                    row2.innerHTML = iframe;
-                    tableBody.appendChild(row2)
-                }
+
             });
         } else {
             console.error("Failed to send timezone:", response.statusText);
